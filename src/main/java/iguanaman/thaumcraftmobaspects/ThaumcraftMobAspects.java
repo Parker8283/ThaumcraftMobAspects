@@ -29,7 +29,7 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid="ThaumcraftMobAspects", name="Thaumcraft Mob Aspects", version="1.6.X-1d", dependencies="required-after:Thaumcraft")
+@Mod(modid="ThaumcraftMobAspects", name="Thaumcraft Mob Aspects", version="@MOD_VERSION@", dependencies="required-after:Thaumcraft")
 public class ThaumcraftMobAspects {
     
     // The instance of your mod that Forge uses.
