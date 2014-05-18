@@ -1,0 +1,16 @@
+[
+{
+  "modid": "ThaumcraftMobAspects",
+  "name": "Thaumcraft Mob Aspects",
+  "description": "Adds Thaumcraft aspects to various mod's mobs",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["iguana_man", "lycaon", "XanderGryphon"],
+  "credits": "Original mod by iguana_man, updated to 1.7 and maintained by Parker8283",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
