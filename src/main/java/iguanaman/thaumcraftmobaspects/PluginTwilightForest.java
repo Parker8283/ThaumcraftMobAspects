@@ -2,8 +2,6 @@ package iguanaman.thaumcraftmobaspects;
 
 import java.util.HashSet;
 
-import cpw.mods.fml.common.Loader;
-import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 
@@ -58,7 +56,7 @@ public class PluginTwilightForest implements AspectPlugin {
 				2)));
 		mobs.add(new ThaumcraftEntity("TwilightForest.Mosquito Swarm", creatureAspects(1, Aspect.AIR, Aspect.FLIGHT)));
 		mobs.add(new ThaumcraftEntity("TwilightForest.Naga", bossAspects(7, Aspect.BEAST, Aspect.POISON)));
-		mobs.add(new ThaumcraftEntity("TwilightForest.Penguin", creatureAspects(3, Aspect.ICE).add(Aspect.WATER, 2)));
+		mobs.add(new ThaumcraftEntity("TwilightForest.Penguin", creatureAspects(3, Aspect.COLD).add(Aspect.WATER, 2)));
 		mobs.add(new ThaumcraftEntity("TwilightForest.Pinch Beetle", creatureAspects(2, Aspect.EARTH).add(
 				Aspect.WEAPON, 2)));
 		mobs.add(new ThaumcraftEntity("TwilightForest.Questing Ram", creatureAspects(4, Aspect.EARTH).add(Aspect.CLOTH,

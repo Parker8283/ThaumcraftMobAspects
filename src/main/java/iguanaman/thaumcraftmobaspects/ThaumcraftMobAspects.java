@@ -13,10 +13,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import net.minecraft.entity.EntityList;
-
-import org.modstats.ModstatInfo;
-import org.modstats.Modstats;
-
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -32,11 +28,8 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
 
-@Mod(modid="ThaumcraftMobAspects", name="Thaumcraft Mob Aspects", version="1.6.X-1d", dependencies="required-after:Thaumcraft;after:*")
-@NetworkMod(clientSideRequired=true, serverSideRequired=true)
-@ModstatInfo(prefix="tcmobaspec")
+@Mod(modid="ThaumcraftMobAspects", name="Thaumcraft Mob Aspects", version="1.6.X-1d", dependencies="required-after:Thaumcraft")
 public class ThaumcraftMobAspects {
     
     // The instance of your mod that Forge uses.
@@ -54,8 +47,6 @@ public class ThaumcraftMobAspects {
 	@EventHandler
 	public void post(FMLPostInitializationEvent event)
 	{
-		Modstats.instance().getReporter().registerMod(this);
-
 		ModFileCache files = new ModFileCache(configDirectory);
 		HashSet<String> modIds = files.getModIds();
 

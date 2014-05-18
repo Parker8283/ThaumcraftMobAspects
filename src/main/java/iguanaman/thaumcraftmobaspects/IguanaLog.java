@@ -1,10 +1,10 @@
 package iguanaman.thaumcraftmobaspects;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class IguanaLog {
 	
-	public static void log(String text)
-	{
-        System.out.println("[ThaumcraftMobAspects] " + text);
-	}
+	public static Logger log = LogManager.getLogger("ThaumcraftMobAspects");
 	
 }

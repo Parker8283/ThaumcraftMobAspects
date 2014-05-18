@@ -2,8 +2,6 @@ package iguanaman.thaumcraftmobaspects;
 
 import java.util.HashSet;
 
-import cpw.mods.fml.common.Loader;
-import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 
@@ -38,7 +36,7 @@ public class PluginMoCreatures implements AspectPlugin {
 		mobs.add(new ThaumcraftEntity("MoCreatures.Dolphin", creatureAspects(3, Aspect.WATER)));
 		mobs.add(new ThaumcraftEntity("MoCreatures.DragonFly", creatureAspects(1, Aspect.AIR, Aspect.FLIGHT)));
 		mobs.add(new ThaumcraftEntity("MoCreatures.Duck", creatureAspects(2, Aspect.EARTH, Aspect.FLIGHT)));
-		mobs.add(new ThaumcraftEntity("MoCreatures.Egg", new AspectList().add(Aspect.SEED, 1).add(Aspect.LIFE, 1)
+		mobs.add(new ThaumcraftEntity("MoCreatures.Egg", new AspectList().add(Aspect.PLANT, 1).add(Aspect.LIFE, 1)
 				.add(Aspect.BEAST, 1)));
 		mobs.add(new ThaumcraftEntity("MoCreatures.Elephant", creatureAspects(4, Aspect.EARTH)));
 		mobs.add(new ThaumcraftEntity("MoCreatures.Firefly", creatureAspects(1, Aspect.AIR, Aspect.FLIGHT)));

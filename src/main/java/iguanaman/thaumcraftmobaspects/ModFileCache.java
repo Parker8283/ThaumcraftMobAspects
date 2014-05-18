@@ -8,7 +8,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
 
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Optional;
@@ -71,6 +70,7 @@ public class ModFileCache {
 		return modIds;
 	}
 
+	@SuppressWarnings("unchecked")
 	public String guessModId(String entityName)
 	{
 

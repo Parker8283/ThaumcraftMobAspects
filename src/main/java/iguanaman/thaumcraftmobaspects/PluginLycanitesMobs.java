@@ -2,11 +2,8 @@ package iguanaman.thaumcraftmobaspects;
 
 import java.util.HashSet;
 
-import cpw.mods.fml.common.Loader;
-import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
-import iguanaman.thaumcraftmobaspects.ThaumcraftMobAspects;
 
 public class PluginLycanitesMobs implements AspectPlugin {
 

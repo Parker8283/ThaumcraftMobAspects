@@ -2,8 +2,6 @@ package iguanaman.thaumcraftmobaspects;
 
 import java.util.HashSet;
 
-import cpw.mods.fml.common.Loader;
-import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 
@@ -37,7 +35,7 @@ public class PluginSpecialMobs implements AspectPlugin {
 		mobs.add(new ThaumcraftEntity("SpecialMobs.BlindingEnderman", endermanAspects.add(Aspect.DARKNESS, 1)));
 		mobs.add(new ThaumcraftEntity("SpecialMobs.ConfusingEnderman", endermanAspects.add(Aspect.SENSES, 1)));
 		mobs.add(new ThaumcraftEntity("SpecialMobs.CursedEnderman", endermanAspects.add(Aspect.SOUL, 1)));
-		mobs.add(new ThaumcraftEntity("SpecialMobs.IcyEnderman", endermanAspects.add(Aspect.ICE, 1)));
+		mobs.add(new ThaumcraftEntity("SpecialMobs.IcyEnderman", endermanAspects.add(Aspect.COLD, 1)));
 		mobs.add(new ThaumcraftEntity("SpecialMobs.LightningEnderman", endermanAspects.add(Aspect.WEATHER, 1)));
 		mobs.add(new ThaumcraftEntity("SpecialMobs.MirageEnderman", endermanAspects.add(Aspect.VOID, 1)));
 		mobs.add(new ThaumcraftEntity("SpecialMobs.SpecialEnderman", endermanAspects));
