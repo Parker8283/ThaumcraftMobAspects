@@ -43,10 +43,10 @@ task buildInfo {
 }
 
 task setSnapshot << {
-	if(System.getenv().BUILD_NUMBER != null) {
-		project.version = config.mod_version + "-snapshot-" + System.getenv().BUILD_NUMBER
+	if(System.getenv().DRONE_BUILD_NUMBER != null) {
+		project.version = config.mod_version + "-snapshot-" + System.getenv().DRONE_BUILD_NUMBER
 	} else {
-		println 'Not in Jenkins. Reverting to release buildType'
+		println 'Not in Drone.io. Reverting to release buildType'
 	}
 }
 
