@@ -17,9 +17,42 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.7.2-Beta-" + System.getenv("BUILD_NUMBER")
+// Define properties file
+ext.configFile = file "build.properties"
+
+configFile.withReader {
+	// Load config.  It shall from now be referenced as simply config or project.config
+	def prop = new Properties()
+	prop.load(it)
+	project.ext.config = new ConfigSlurper().parse prop
+}
+
+version = config.mod_version
 group= "iguanaman" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "ThaumcraftMobAspects"
+
+task buildInfo {
+	def cmd = "git rev-parse --short HEAD"
+	def proc = cmd.execute()
+	proc.waitFor()
+	if (proc.exitValue() == 0) {
+		ext.revision = proc.text.trim()
+	} else {
+		ext.revision = "???????"
+	}
+}
+
+task setSnapshot << {
+	if(System.getenv().BUILD_NUMBER != null) {
+		project.version = config.mod_version + "-snapshot-" + System.getenv().BUILD_NUMBER
+	} else {
+		println 'Not in Jenkins. Reverting to release buildType'
+	}
+}
+
+task setDev << {
+	project.version = "DEV-${project.buildInfo.revision}"
+}
 
 minecraft {
     version = "1.7.2-10.12.2.1121"
