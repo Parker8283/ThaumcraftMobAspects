@@ -27,9 +27,12 @@ configFile.withReader {
 	project.ext.config = new ConfigSlurper().parse prop
 }
 
-version = config.mod_version
+version = "${config.mc_version}-${config.mod_version}"
 group= "iguanaman" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "ThaumcraftMobAspects"
+
+ext.isSnapshot = false
+ext.isDev = false
 
 task buildInfo {
 	def cmd = "git rev-parse --short HEAD"
@@ -44,7 +47,8 @@ task buildInfo {
 
 task setSnapshot << {
 	if(System.getenv().DRONE_BUILD_NUMBER != null) {
-		project.version = config.mod_version + "-snapshot-" + System.getenv().DRONE_BUILD_NUMBER
+		project.version = config.mc_version + "-" + config.mod_version + "-snapshot-" + System.getenv().DRONE_BUILD_NUMBER
+		project.isSnapshot = true
 	} else {
 		println 'Not in Drone.io. Reverting to release buildType'
 	}
@@ -52,14 +56,21 @@ task setSnapshot << {
 
 task setDev << {
 	project.version = "DEV-${project.buildInfo.revision}"
+	project.version = true
 }
 
 minecraft {
-    version = "1.7.2-10.12.2.1121"
+    version = "${config.mc_version}-${config.forge_version}"
     assetDir = "../run/assets"
     
     replaceIn "ThaumcraftMobAspects.java"
-    replace "@MOD_VERSION@", project.version
+    if(isSnapshot) {
+		replace "@MOD_VERSION@", config.mod_version + " Snapshot " + System.getenv().DRONE_BUILD_NUMBER
+	} else if(isDev) {
+		replace "@MOD_VERSION@", "DEV ${project.buildInfo.revision}"
+	} else {
+		replace "@MOD_VERSION@", config.mod_version
+	}
 }
 
 processResources
