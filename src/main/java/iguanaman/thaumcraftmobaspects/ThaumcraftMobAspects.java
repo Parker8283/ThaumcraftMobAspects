@@ -1,5 +1,7 @@
 package iguanaman.thaumcraftmobaspects;
 
+import iguanaman.thaumcraftmobaspects.UpdateChecker.Result;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -22,26 +24,37 @@ import com.google.common.collect.HashMultimap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid="ThaumcraftMobAspects", name="Thaumcraft Mob Aspects", version="@MOD_VERSION@", dependencies="required-after:Forge@[10.12.2.1121,);required-after:Thaumcraft@[4.1.1,);")
+@Mod(modid=ModInfo.MODID, name=ModInfo.MOD_NAME, version=ModInfo.VERSION)//, dependencies=ModInfo.DEPENDENCIES
 public class ThaumcraftMobAspects {
-    
+	
     // The instance of your mod that Forge uses.
-    @Instance("ThaumcraftMobAspects")
+    @Instance(ModInfo.MODID)
     public static ThaumcraftMobAspects instance;
     
 	private File configDirectory;
+	
+	public Result result;
 
 	@EventHandler
 	public void pre(FMLPreInitializationEvent event)
 	{
 		configDirectory = event.getModConfigurationDirectory();
+		result = UpdateChecker.runUpdateCheck();
+	}
+	
+	@EventHandler
+	public void init(FMLInitializationEvent event)
+	{
+		FMLCommonHandler.instance().bus().register(UpdateChecker.instance.new UpdaterEventHook());
 	}
 
 	@EventHandler
@@ -186,5 +199,4 @@ public class ThaumcraftMobAspects {
 
 		return result;
 	}
-
 }

@@ -58,8 +58,9 @@ minecraft {
     version = "${config.mc_version}-${config.forge_version}"
     assetDir = "../run/assets"
     
-    replaceIn "ThaumcraftMobAspects.java"
+    replaceIn "ModInfo.java"
 	replace "@MOD_VERSION@", project.version
+	replace "@IS_RELEASE@", config.is_release
 }
 
 processResources
