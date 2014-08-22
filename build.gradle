@@ -21,46 +21,46 @@ apply plugin: 'forge'
 ext.configFile = file "build.properties"
 
 configFile.withReader {
-	// Load config.  It shall from now be referenced as simply config or project.config
-	def prop = new Properties()
-	prop.load(it)
-	project.ext.config = new ConfigSlurper().parse prop
+    // Load config.  It shall from now be referenced as simply config or project.config
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
 }
 
-version = "${config.mc_version}-${config.mod_version}"
+version = "1.7.x-${config.mod_version}"
 group= "iguanaman" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "ThaumcraftMobAspects"
 
 task buildInfo {
-	def cmd = "git rev-parse --short HEAD"
-	def proc = cmd.execute()
-	proc.waitFor()
-	if (proc.exitValue() == 0) {
-		ext.revision = proc.text.trim()
-	} else {
-		ext.revision = "???????"
-	}
+    def cmd = "git rev-parse --short HEAD"
+    def proc = cmd.execute()
+    proc.waitFor()
+    if (proc.exitValue() == 0) {
+        ext.revision = proc.text.trim()
+    } else {
+        ext.revision = "GITBORK"
+    }
 }
 
 task setSnapshot << {
-	if(System.getenv().DRONE_BUILD_NUMBER != null) {
-		project.version = config.mc_version + "-" + config.mod_version + "-snapshot-" + System.getenv().DRONE_BUILD_NUMBER
-	} else {
-		println 'Not in Drone.io. Reverting to release buildType'
-	}
+    if(System.getenv().DRONE_BUILD_NUMBER != null) {
+        project.version = "1.7.x-" + config.mod_version + "-snapshot-" + System.getenv().DRONE_BUILD_NUMBER
+    } else {
+        println 'Not in Drone.io. Reverting to release buildType'
+    }
 }
 
 task setDev << {
-	project.version = "DEV-${project.buildInfo.revision}"
+    project.version = "DEV-${project.buildInfo.revision}"
 }
 
 minecraft {
     version = "${config.mc_version}-${config.forge_version}"
-    assetDir = "../run/assets"
+    runDir = "run"
     
     replaceIn "ModInfo.java"
-	replace "@MOD_VERSION@", project.version
-	replace "@IS_RELEASE@", config.is_release
+    replace "@MOD_VERSION@", project.version
+    replace "@IS_RELEASE@", config.is_release
 }
 
 processResources
